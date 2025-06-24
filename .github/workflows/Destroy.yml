@@ -31,13 +31,14 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
-        # If using Terraform Cloud, uncomment and add token secret
-        # with:
-        #   cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
       - name: Terraform Init
         run: terraform init
-        
+
+      - name: Terraform Import VM
+        run: |
+          terraform import azurerm_linux_virtual_machine.vm /subscriptions/c154b413-db01-48a8-93f6-4172584ac18a/resourceGroups/MYRESOURCEGROUP/providers/Microsoft.Compute/virtualMachines/EXAMPLE-VM
+        # Replace resource ID with your actual VM resource ID if different
+
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
-
-      
