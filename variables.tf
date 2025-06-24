@@ -3,7 +3,8 @@ variable "subscription_id" {
   description = "Azure subscription ID"
 }
 
-variable "admin_username" {
+variable "admin_password" {
   type        = string
-  description = "Admin username for the VM"
+  description = "Admin password for the virtual machine"
+  sensitive   = true
 }
