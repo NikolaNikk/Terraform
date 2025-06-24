@@ -10,7 +10,7 @@ terraform {
 }
 provider "azurerm" {
   features {}
-  subscription_id = "c154b413-db01-48a8-93f6-4172584ac18a"
+  subscription_id = var.subscription_id
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -49,8 +49,8 @@ resource "azurerm_windows_virtual_machine" "vm" {
   resource_group_name   = azurerm_resource_group.rg.name
   location              = azurerm_resource_group.rg.location
   size                  = "Standard_B1s"
-  admin_username        = "nikola"
-  admin_password        = "Nikola1234"
+  admin_username        = var.admin_username
+  admin_password        = var.admin_pasword
   network_interface_ids = [azurerm_network_interface.nic.id]
 
   os_disk {
