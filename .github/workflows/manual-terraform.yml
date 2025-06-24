@@ -1,4 +1,4 @@
-name: Azure Login
+name: Azure-Terraform
 
 on:
   workflow_dispatch:
@@ -19,6 +19,7 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
+    needs: build-and-deploy
     environment: production
 
     defaults:
