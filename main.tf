@@ -64,9 +64,4 @@ resource "azurerm_linux_virtual_machine" "vm" {
     sku       = "20.04-LTS"
     version   = "latest"
   }
-
-  admin_ssh_key {
-    username   = var.admin_username
-    public_key = file(var.ssh_public_key_path)
-  }
 }
