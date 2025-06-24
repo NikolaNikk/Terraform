@@ -44,18 +44,19 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "example" {
+resource "azurerm_linux_virtual_machine" "vm" {
   name                = "example-vm"
-  resource_group_name = "student"
-  location            = "East US"
+  resource_group_name = azurerm_resource_group.rg.name   # use the RG you created
+  location            = azurerm_resource_group.rg.location
   size                = "Standard_B1s"
-  admin_username      = "azureuser"
-  network_interface_ids = [
-    azurerm_network_interface.example.id
-  ]
+  admin_username      = var.admin_username
+  admin_password      = var.admin_password
 
-  admin_password = var.admin_password
-  disable_password_authentication = false
+  disable_password_authentication = false   # must be false to allow password auth
+
+  network_interface_ids = [
+    azurerm_network_interface.nic.id          # correct NIC reference
+  ]
 
   os_disk {
     caching              = "ReadWrite"
