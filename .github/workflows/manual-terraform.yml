@@ -8,18 +8,9 @@ permissions:
   contents: read
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Azure login
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    needs: build-and-deploy
     environment: production
 
     defaults:
@@ -27,13 +18,19 @@ jobs:
         shell: bash
 
     steps:
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
-        #with:
-          #cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+        # If using Terraform Cloud, uncomment and add token secret
+        # with:
+        #   cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Init
         run: terraform init
