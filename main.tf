@@ -50,7 +50,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
   location              = azurerm_resource_group.rg.location
   size                  = "Standard_B1s"
   admin_username        = var.admin_username
-  admin_password        = var.admin_pasword
+  admin_password        = var.admin_password
   network_interface_ids = [azurerm_network_interface.nic.id]
 
   os_disk {
