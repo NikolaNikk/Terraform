@@ -4,12 +4,11 @@ variable "subscription_id" {
 }
 
 variable "admin_username" {
-  type = string
+  type        = string
   description = "Admin username for the VM"
 }
 
-variable "admin_password" {
-  type      = string
-  description = "Admin password for the VM"
-  sensitive = true
+variable "ssh_public_key_path" {
+  type        = string
+  description = "Path to the SSH public key"
 }
