@@ -44,13 +44,13 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-resource "azurerm_windows_virtual_machine" "vm" {
-  name                  = "myVM"
-  resource_group_name   = azurerm_resource_group.rg.name
-  location              = azurerm_resource_group.rg.location
-  size                  = "Standard_B1s"
-  admin_username        = var.admin_username
-  admin_password        = var.admin_password
+resource "azurerm_linux_virtual_machine" "vm" {
+  name                = "myUbuntuVM"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  size                = "Standard_B1s"
+  admin_username      = var.admin_username
+
   network_interface_ids = [azurerm_network_interface.nic.id]
 
   os_disk {
@@ -59,9 +59,14 @@ resource "azurerm_windows_virtual_machine" "vm" {
   }
 
   source_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2019-Datacenter"
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "20.04-LTS"
     version   = "latest"
+  }
+
+  admin_ssh_key {
+    username   = var.admin_username
+    public_key = file(var.ssh_public_key_path)
   }
 }
