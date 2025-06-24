@@ -10,7 +10,7 @@ terraform {
 }
 provider "azurerm" {
   features {}
-  subscription_id = ${{secret.SUBSCRIPTION_ID}}
+  subscription_id = ${{secrets.SUBSCRIPTION_ID}}
 }
 
 resource "azurerm_resource_group" "rg" {
