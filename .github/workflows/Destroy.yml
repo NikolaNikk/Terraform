@@ -37,7 +37,7 @@ jobs:
 
       - name: Terraform Import VM
         run: |
-          terraform import azurerm_linux_virtual_machine.vm /subscriptions/c154b413-db01-48a8-93f6-4172584ac18a/resourceGroups/MYRESOURCEGROUP/providers/Microsoft.Compute/virtualMachines/EXAMPLE-VM
+          terraform import azurerm_linux_virtual_machine.vm /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/MYRESOURCEGROUP/providers/Microsoft.Compute/virtualMachines/EXAMPLE-VM
         # Replace resource ID with your actual VM resource ID if different
 
       - name: Terraform Destroy
