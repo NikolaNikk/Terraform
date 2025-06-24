@@ -35,6 +35,9 @@ jobs:
         run: terraform init
         
       - name: Terraform Destroy
-        run: terraform destroy
+        run: terraform destroy -auto-approve \
+          -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+          -var="admin_username=${{ secrets.ADMIN_USERNAME }}" \
+          -var="admin_password=${{ secrets.ADMIN_PASSWORD }}"
 
       
