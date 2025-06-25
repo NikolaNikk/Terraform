@@ -57,7 +57,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   disable_password_authentication = false   # must be false to allow password auth
 
   network_interface_ids = [
-    azurerm_network_interface.nic.id          # correct NIC reference
+    azurerm_network_interface.nic[each.key].id          # correct NIC reference
   ]
 
   os_disk {
