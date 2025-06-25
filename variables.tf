@@ -13,3 +13,4 @@ variable "admin_username" {
   type        = string
   description = "Admin username for the virtual machine"
 }
+
