@@ -45,7 +45,8 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                = "vm"
+  for_each            = toset(var.vm_names)
+  name                = each.key
   resource_group_name = azurerm_resource_group.rg.name   # use the RG you created
   location            = azurerm_resource_group.rg.location
   size                = "Standard_B1s"
