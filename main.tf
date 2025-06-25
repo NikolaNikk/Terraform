@@ -45,7 +45,7 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                = "example-vm"
+  name                = "vm"
   resource_group_name = azurerm_resource_group.rg.name   # use the RG you created
   location            = azurerm_resource_group.rg.location
   size                = "Standard_B1s"
