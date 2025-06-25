@@ -14,3 +14,7 @@ variable "admin_username" {
   description = "Admin username for the virtual machine"
 }
 
+variable "vm_names" {
+  type    = list(string)
+  default = ["vm1", "vm2", "vm3"]
+}
