@@ -1,4 +1,3 @@
-  GNU nano 7.2                                                                                                                                                      main.tf
 terraform {
   required_version = ">= 1.0.0"
 
